@@ -1,6 +1,6 @@
 ## Advanced Lane Finding Project
 
-### In this project, I wrote a software pipeline to identify the lane boundaries in a video from a car's front-facing camera.
+### In this project, I wrote a software pipeline using traditional computer vision techniques to identify the lane boundaries from a car's front-facing camera video feed.
 
 ---
 
@@ -46,6 +46,9 @@ The code for this step is contained in lines # through # of the file called `lan
 
 ### Lane Line Fitting
 
+### Lessons Learned
+
+### Future Work
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
