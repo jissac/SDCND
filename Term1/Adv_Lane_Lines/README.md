@@ -1,10 +1,10 @@
-## Writeup Template
+## Advanced Lane Finding Project
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+### In this project, I wrote a software pipeline to identify the lane boundaries in a video from a car's front-facing camera.
 
 ---
 
-**Advanced Lane Finding Project**
+**Outline**
 
 The goals / steps of this project are the following:
 
@@ -26,6 +26,19 @@ The goals / steps of this project are the following:
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
 [image6]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
+
+### Camera Calibration
+
+Cameras look at a 3D object in the real world and translate that into 2D - this process changes what the shape and size of the 3D object appear to be. Therefore, the first step in analyzing camera images should be to undistort the recorded image. There are two primary types of distortion: **radial** and **tangential**. Radial distortion refers to when lines or objects appear more or less curved than they actually are. Tangential distortion refers to when a camera's lens is not aligned perfectly parallel to the imaging plane, where the camera film or sensor is, which results in a tilted image. 
+
+
+
+
+
+
+
+
+
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
