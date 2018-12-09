@@ -1,10 +1,10 @@
-## Writeup Template
+## Advanced Lane Finding Project
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+### In this project, I wrote a software pipeline to identify the lane boundaries in a video from a car's front-facing camera.
 
 ---
 
-**Advanced Lane Finding Project**
+**Outline**
 
 The goals / steps of this project are the following:
 
@@ -27,36 +27,23 @@ The goals / steps of this project are the following:
 [image6]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
-## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
-
-### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
-
----
-
-### Writeup / README
-
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
-
-You're reading it!
-
 ### Camera Calibration
 
-#### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
+Cameras look at a 3D object in the real world and translate that into 2D - this process changes what the shape and size of the 3D object appear to be. Therefore, the first step in analyzing camera images should be to undistort the recorded image. There are two primary types of distortion: **radial** and **tangential**. Radial distortion refers to when lines or objects appear more or less curved than they actually are. Tangential distortion refers to when a camera's lens is not aligned perfectly parallel to the imaging plane, where the camera film or sensor is, which results in a tilted image. 
+  
+**Map distorted points to undistorted points**       
+We can correct for these distortion errors by calibrating with pictures of known objects. An image of a chessboard is great for calibration because its regular high contrast pattern makes it easy to detect automatically. So if we use our camera to take multiple images of a chessboard pattern against a flat surface, we can detect distortion by comparing the apparent size and shape of the squares in these images to a standard image of a chessboard. We'll create a transform that maps the distorted points to the undistorted points which will then allow us to undistort any images.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./examples/example.ipynb" (or in lines # through # of the file called `some_file.py`).  
+Using OpenCV and Python, I computed the camera matrix and distortion coefficients. I created a an array called `objpoints`, which holds the (x,y,z) coordinates of the 'ground-truth' chessboard coordinates for an undistorted 3D image (I assume the chessboard is fixed on the (x,y) plane at a fixed distance z=0), and an array called `imgpoints`, which holds the (x,y) coordinates of the images in the calibration image plane. I found the corners of each calibration image using OpenCV, stored them in `imgpoints`, and mapped those points to the ground-truths contained in `objpoints`. I used these mapped values to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function and then applied the distortion correction to a test image using the `cv2.undistort()` function.
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+The code for this step is contained in lines # through # of the file called `lane-utils.py` and an example of an original test image with its undistorted image is shown below:
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
-![alt text][image1]
+### Gradient and Color Thresholding
 
-### Pipeline (single images)
 
-#### 1. Provide an example of a distortion-corrected image.
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
+
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
