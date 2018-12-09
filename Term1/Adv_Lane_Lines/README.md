@@ -42,7 +42,9 @@ The code for this step is contained in lines # through # of the file called `lan
 ### Gradient and Color Thresholding
 
 
+### Perspective Transform
 
+### Lane Line Fitting
 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
