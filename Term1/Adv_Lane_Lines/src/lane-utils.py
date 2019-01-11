@@ -124,35 +124,30 @@ def perspective_transform(img):
     '''
     
     '''
-    top_left = [570,480]
-    top_right = [750,480]
-    bottom_right = [1100,720]
-    bottom_left = [300,720]
- 
-    region_of_interest = np.array([[(570,480),(750,480), (1100,720), (300,720)]], dtype=np.int32)
-    copy = img.copy()
-    mask = np.zeros_like(copy)
-    ignore_mask_color = 255
-    cv2.fillPoly(mask,region_of_interest,ignore_mask_color)
-    '''
-    if ret == True:
-        img_size = (gray.shape[1],gray.shape[0])
-        print(img_size)
-        # get outer four detected corners (top-left, top-right, bottom-right, and bottom-left)
-        src = np.float32([corners[0], corners[nx-1], corners[-1], corners[-nx]])
-        # define destination points
-        dst = np.float32([[offset, offset], [img_size[0]-offset, offset], 
-                                     [img_size[0]-offset, img_size[1]-offset], 
-                                     [offset, img_size[1]-offset]])
+    top_left = (560,480)
+    top_right = (760,480)
+    bottom_right = (1150,720)
+    bottom_left = (260,720)
+    
+    img_size = (image.shape[1], image.shape[0])
+    offset = 320
+    region_of_interest = np.array([[top_left,top_right, bottom_right, bottom_left]], dtype=np.float32)
+    # destination points chosen so that warped lane lines appear parallel
+    destination = np.float32([[offset, 0], [img_size[0]-offset, 0], 
+                                     [img_size[0]-offset, img_size[1]], 
+                                     [offset, img_size[1]]])
+#     tl = [320,0]
+#     tr = [920,0]
+#     br = [920,720]
+#     bl = [320,720]
+#     destination = np.float32([tl,tr,br,bl])
 
-        # Given src and dst points, calculate the perspective transform matrix
-        M = cv2.getPerspectiveTransform(src, dst)
-        # Warp the image using OpenCV warpPerspective()
-        warped = cv2.warpPerspective(undist, M, img_size)
-        '''
-    return copy
+    # Given src and dst points, calculate the perspective transform matrix
+    M = cv2.getPerspectiveTransform(region_of_interest,destination)
+    # Warp the image using OpenCV warpPerspective()
+    warped = cv2.warpPerspective(img, M, img_size)
+    return warped, M
 
 def curve_fit():
     
     return None
-
