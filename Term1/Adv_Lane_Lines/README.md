@@ -11,7 +11,7 @@ The goals / steps of this project are the following:
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
 * Apply a distortion correction to raw images.
 * Use color transforms, gradients, etc., to create a thresholded binary image.
-* Apply a perspective transform to rectify binary image ("birds-eye view").
+* Apply a perspective transform to rectify the binary image ("birds-eye view").
 * Detect lane pixels and fit to find the lane boundary.
 * Determine the curvature of the lane and vehicle position with respect to center.
 * Warp the detected lane boundaries back onto the original image.
@@ -32,11 +32,15 @@ The goals / steps of this project are the following:
 Cameras look at a 3D object in the real world and translate that into 2D - this process changes what the shape and size of the 3D object appear to be. Therefore, the first step in analyzing camera images should be to undistort the recorded image. There are two primary types of distortion: **radial** and **tangential**. Radial distortion refers to when lines or objects appear more or less curved than they actually are. Tangential distortion refers to when a camera's lens is not aligned perfectly parallel to the imaging plane, where the camera film or sensor is, which results in a tilted image. 
   
 **Map distorted points to undistorted points**       
-We can correct for these distortion errors by calibrating with pictures of known objects. An image of a chessboard is great for calibration because its regular high contrast pattern makes it easy to detect automatically. So if we use our camera to take multiple images of a chessboard pattern against a flat surface, we can detect distortion by comparing the apparent size and shape of the squares in these images to a standard image of a chessboard. We'll create a transform that maps the distorted points to the undistorted points which will then allow us to undistort any images.
+We can correct for these distortion errors by calibrating with pictures of known objects. An image of a chessboard is great for calibration because its regular high contrast pattern makes it easy to detect automatically. So if we use our camera to take multiple images of a chessboard pattern against a flat surface, we can detect distortion by comparing the apparent size and shape of the squares in these images to a standard image of a chessboard. We'll create a transform that maps the distorted points to the undistorted points which will then allow us to undistort any image, as shown below.
+
+** add orig and undist chessboard images **
 
 Using OpenCV and Python, I computed the camera matrix and distortion coefficients. I created a an array called `objpoints`, which holds the (x,y,z) coordinates of the 'ground-truth' chessboard coordinates for an undistorted 3D image (I assume the chessboard is fixed on the (x,y) plane at a fixed distance z=0), and an array called `imgpoints`, which holds the (x,y) coordinates of the images in the calibration image plane. I found the corners of each calibration image using OpenCV, stored them in `imgpoints`, and mapped those points to the ground-truths contained in `objpoints`. I used these mapped values to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function and then applied the distortion correction to a test image using the `cv2.undistort()` function.
 
 The code for this step is contained in lines # through # of the file called `lane-utils.py` and an example of an original test image with its undistorted image is shown below:
+
+** add orig and undist images **
 
 
 ### Gradient and Color Thresholding
