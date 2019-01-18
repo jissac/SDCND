@@ -78,7 +78,7 @@ After finding the starting points of the lane lines, I used sliding windows movi
 
 ** add sliding window picture ** 
 
-
+After finding 
 
 ### Lessons Learned and Future Work
 
