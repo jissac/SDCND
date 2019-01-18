@@ -70,6 +70,11 @@ The code for this step is contained in the `perspective_transform()` function on
 ** add warped image **
 
 ### Lane Line Fitting
+The final step in the pipeline is to map the isolated lane line pixels to left and right lane line polynomials and determine the lane curvature. I found where the left and right lane lines start by plotting a histogram of where the binary activations occur across the lower half of the image. By adding up the pixel values along each column in the image, I was able to find the two peaks where the base of the lane lines occur, as shown in the image below.
+
+** add histogram picture **
+
+After finding the starting points of the lane lines, I used sliding windows moving upward in the image (further along the road) to determine where the lane lines go, as shown in the image below.
 
 ### Lessons Learned
 
