@@ -42,15 +42,24 @@ We can correct for these distortion errors by calibrating with pictures of known
 
 Using OpenCV and Python, I computed the camera matrix and distortion coefficients. I created a an array called `objpoints`, which holds the (x,y,z) coordinates of the 'ground-truth' chessboard coordinates for an undistorted 3D image (I assume the chessboard is fixed on the (x,y) plane at a fixed distance z=0), and an array called `imgpoints`, which holds the (x,y) coordinates of the images in the calibration image plane. I found the corners of each calibration image using OpenCV, stored them in `imgpoints`, and mapped those points to the ground-truths contained in `objpoints`. I used these mapped values to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function and then applied the distortion correction to a test image using the `cv2.undistort()` function.
 
-The code for this step is contained in the `calibrate_camera` function on lines 15 through 56 in the file `lane-utils.py`. An example of an original test image with its undistorted image is shown below:
+The code for this step is contained in the `calibrate_camera()` and `undistor()` functions on lines 15 through 64 in the file `lane-utils.py`. An example of an original test image with its undistorted image is shown below:
 
 ** add orig and undist images **
 
 
 ### Gradient and Color Thresholding
-Our eyes can easily detect which pixels belong to lanes and which do not. However, isolating these pixels for a computer to 'see' requires some thresholding - or image segmentation. The goal of this step is to produce a binary image where the lane line pixels are clearly visible by using gradient and color thresholding. 
+Our eyes can easily detect which pixels belong to lanes and which do not. However, isolating these pixels for a computer to 'see' requires some thresholding - or image segmentation. The goal of this step is to produce a binary image where the lane line pixels are clearly visible; this is accomplished by using gradient and color thresholding. 
+
+I do gradient thresholding by using the Sobel operator to compute the *x* and *y* derivatives of the image, thereby finding the vertical and horizontal edges in the image, respectively. I then compute the magnitude of the gradient by combining both *x* and *y* derivatives. Furthermore, in the case of lane lines, we're only interested in edges of a particular orientation. By finding the direction of the gradient (the inverse tangent (arctangent) of the *y* gradient divided by the *x* gradient) we can further isolate the lane lines and remove other noisy edges in the image.
+
+Color spaces are important in an image as they convey valuable information not captured by gradients alone, such as yellow lane lines. I do color thresholding by isolating the S channel in the HLS (hue, lightness, saturation) color space. I found that the S channel most clearly isolates the lane lines out of the various color channels. 
+
+Finally, I combine the color and gradient thresholds to arrive at a combined binary image. The code for this step is contained in the `color_gradient_thresh()` function on lines 66 through 121 in the file `lane-utils.py`. An example of the output binary image is shown below:
+
+** add binary output image **
 
 ### Perspective Transform
+A perspective transform applies a 'birds-eye' view to the thresholded binary image.
 
 ### Lane Line Fitting
 
