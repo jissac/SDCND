@@ -59,7 +59,15 @@ Finally, I combine the color and gradient thresholds to arrive at a combined bin
 ** add binary output image **
 
 ### Perspective Transform
-A perspective transform applies a 'birds-eye' view to the thresholded binary image.
+A perspective transform applies a 'birds-eye' view to the thresholded binary image by mapping the points in a given image to different, desired, image points with a new perspective. This is helpful when calculating lane curvature. 
+
+First, I identified four source points for the perspective transform. I assumed the road is a flat plane and manually found the points, which form a trapezodial shape that would represent a rectangle when looking down on the road from above. The region of interest is shown below.
+
+** add region of interest, trapezoidal image **
+
+The code for this step is contained in the `perspective_transform()` function on lines 123 through 150 in the file `lane-utils.py`. An example of the transformed image is shown below:
+
+** add warped image **
 
 ### Lane Line Fitting
 
