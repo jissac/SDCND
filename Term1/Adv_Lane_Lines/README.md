@@ -23,7 +23,7 @@ An example of the final output is shown below:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
+[image1]: ./img/output_images/warped.jpg "Warped"
 [image2]: ./test_images/test1.jpg "Road Transformed"
 [image3]: ./examples/binary_combo_example.jpg "Binary Example"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
@@ -48,7 +48,7 @@ The code for this step is contained in the `calibrate_camera` function on lines 
 
 
 ### Gradient and Color Thresholding
-
+Our eyes can easily detect which pixels belong to lanes and which do not. However, isolating these pixels for a computer to 'see' requires some thresholding - or image segmentation. The goal of this step is to produce a binary image where the lane line pixels are clearly visible by using gradient and color thresholding. 
 
 ### Perspective Transform
 
@@ -62,7 +62,7 @@ The code for this step is contained in the `calibrate_camera` function on lines 
 
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
-![alt text][image3]
+![alt text][image1]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
