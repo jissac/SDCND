@@ -76,9 +76,11 @@ The final step in the pipeline is to map the isolated lane line pixels to left a
 
 After finding the starting points of the lane lines, I used sliding windows moving upward in the image (further along the road) to determine where the lane lines go, as shown in the image below.
 
-### Lessons Learned
+** add sliding window picture ** 
 
-### Future Work
+
+
+### Lessons Learned and Future Work
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
