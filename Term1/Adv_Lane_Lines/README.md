@@ -78,7 +78,8 @@ After finding the starting points of the lane lines, I used sliding windows movi
 
 ** add sliding window picture ** 
 
-After finding 
+After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point.
+
 
 ### Lessons Learned and Future Work
 
