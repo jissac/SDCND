@@ -78,10 +78,23 @@ After finding the starting points of the lane lines, I used sliding windows movi
 
 ** add sliding window picture ** 
 
-After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point.
+Furthermore, instead of repeating the lane-line search from scratch every frame, once you've found the lane line from the previous frame it's more efficient to do a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines this time).
+
+** add green search image **
+
+After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point. Since the curvature depends on the radius, the smaller the radius, the greater the curvature (and vice versa); the radius of curvature *R* is the inverse of the curvature *K*. After finding the radius of curvature, I converted the number from pixel space to real-world space. 
+
+The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `code`, `code`, and `code` on lines x throught y in the file `lane-utils.py`.
+
+### Video Pipeline
+After completing the pipeline for a single image frame, the final part of the project is to extend the pipeline to work on video.
 
 
 ### Lessons Learned and Future Work
+
+### References
+Udacity 
+https://www.intmath.com/applications-differentiation/8-radius-curvature.php
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
