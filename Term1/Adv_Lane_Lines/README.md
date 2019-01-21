@@ -24,7 +24,7 @@ An example of the final output is shown below:
 [//]: # (Image References)
 
 [image1]: ./img/output_images/cal_undist.jpg "cal_undist"
-[image2]: ./test_images/test1.jpg "Road Transformed"
+[image2]: ./img/output_images/test_undist.jpg "test_undist"
 [image3]: ./img/output_images/warped.jpg "Warped"
 [image4]: ./examples/warped_straight_lines.jpg "Warp Example"
 [image5]: ./examples/color_fit_lines.jpg "Fit Visual"
@@ -42,9 +42,9 @@ We can correct for these distortion errors by calibrating with pictures of known
 
 Using OpenCV and Python, I computed the camera matrix and distortion coefficients. I created a an array called `objpoints`, which holds the (x,y,z) coordinates of the 'ground-truth' chessboard coordinates for an undistorted 3D image (I assume the chessboard is fixed on the (x,y) plane at a fixed distance z=0), and an array called `imgpoints`, which holds the (x,y) coordinates of the images in the calibration image plane. I found the corners of each calibration image using OpenCV, stored them in `imgpoints`, and mapped those points to the ground-truths contained in `objpoints`. I used these mapped values to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function and then applied the distortion correction to a test image using the `cv2.undistort()` function.
 
-The code for this step is contained in the `calibrate_camera()` and `undistor()` functions on lines 15 through 64 in the file `lane-utils.py`. An example of an original test image with its undistorted image is shown below:
+The code for this step is contained in the `calibrate_camera()` and `undistort()` functions on lines 15 through 64 in the file `lane-utils.py`. An example of an original test image with its undistorted image is shown below:
 
-** add orig and undist images **
+![alt text][image2]
 
 
 ### Gradient and Color Thresholding
