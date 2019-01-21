@@ -25,9 +25,9 @@ An example of the final output is shown below:
 
 [image1]: ./img/output_images/cal_undist.jpg "cal_undist"
 [image2]: ./img/output_images/test_undist.jpg "test_undist"
-[image3]: ./img/output_images/warped.jpg "Warped"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
+[image3]: ./img/output_images/test_binary.jpg "test_binary"
+[image4]: ./img/output_images/test_roi.jpg "test_roi"
+[image5]: ./img/output_images/test_binary_warped.jpg "test_binary_warped"
 [image6]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
@@ -40,7 +40,7 @@ We can correct for these distortion errors by calibrating with pictures of known
 
 ![alt text][image1]
 
-Using OpenCV and Python, I computed the camera matrix and distortion coefficients. I created a an array called `objpoints`, which holds the (x,y,z) coordinates of the 'ground-truth' chessboard coordinates for an undistorted 3D image (I assume the chessboard is fixed on the (x,y) plane at a fixed distance z=0), and an array called `imgpoints`, which holds the (x,y) coordinates of the images in the calibration image plane. I found the corners of each calibration image using OpenCV, stored them in `imgpoints`, and mapped those points to the ground-truths contained in `objpoints`. I used these mapped values to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function and then applied the distortion correction to a test image using the `cv2.undistort()` function.
+Using OpenCV and Python, I computed the camera matrix and distortion coefficients. I created an array called `objpoints`, which holds the (x,y,z) coordinates of the 'ground-truth' chessboard coordinates for an undistorted 3D image (I assume the chessboard is fixed on the (x,y) plane at a fixed distance z=0), and an array called `imgpoints`, which holds the (x,y) coordinates of the images in the calibration image plane. I found the corners of each calibration image using OpenCV, stored them in `imgpoints`, and mapped those points to the ground-truths contained in `objpoints`. I used these mapped values to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function and then applied the distortion correction to a test image using the `cv2.undistort()` function.
 
 The code for this step is contained in the `calibrate_camera()` and `undistort()` functions on lines 15 through 64 in the file `lane-utils.py`. An example of an original test image with its undistorted image is shown below:
 
@@ -56,18 +56,18 @@ Color spaces are important in an image as they convey valuable information not c
 
 Finally, I combine the color and gradient thresholds to arrive at a combined binary image. The code for this step is contained in the `color_gradient_thresh()` function on lines 66 through 121 in the file `lane-utils.py`. An example of the output binary image is shown below:
 
-** add binary output image **
+![alt text][image3]
 
 ### Perspective Transform
 A perspective transform applies a 'birds-eye' view to the thresholded binary image by mapping the points in a given image to different, desired, image points with a new perspective. This is helpful when calculating lane curvature. 
 
 First, I identified four source points for the perspective transform. I assumed the road is a flat plane and manually found the points, which form a trapezodial shape that would represent a rectangle when looking down on the road from above. The region of interest is shown below.
 
-** add region of interest, trapezoidal image **
+![alt text][image4]
 
 The code for this step is contained in the `perspective_transform()` function on lines 123 through 150 in the file `lane-utils.py`. An example of the transformed image is shown below:
 
-** add warped image **
+![alt text][image5]
 
 ### Lane Line Fitting
 The final step in the pipeline is to map the isolated lane line pixels to left and right lane line polynomials and determine the lane curvature. I found where the left and right lane lines start by plotting a histogram of where the binary activations occur across the lower half of the image. By adding up the pixel values along each column in the image, I was able to find the two peaks where the base of the lane lines occur, as shown in the image below.
