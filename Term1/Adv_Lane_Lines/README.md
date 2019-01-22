@@ -81,7 +81,7 @@ After finding the starting points of the lane lines, I used sliding windows movi
 
 After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point. Since the curvature depends on the radius, the smaller the radius, the greater the curvature (and vice versa); the radius of curvature *R* is the inverse of the curvature *K*. After finding the radius of curvature, I converted the number from pixel space to real-world space. 
 
-The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `code`, `code`, and `code` on lines x throught y in the file `lane-utils.py`.
+The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, and `measure_curvature_pixels_meters()` on lines 142 throught 269 in the file `lane-utils.py`.
 
 ### Video Pipeline
 After completing the pipeline for a single image frame, the final part of the project is to extend the pipeline to work on video.
