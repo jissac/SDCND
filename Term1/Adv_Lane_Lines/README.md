@@ -28,7 +28,8 @@ An example of the final output is shown below:
 [image3]: ./img/output_images/test_binary.jpg "test_binary"
 [image4]: ./img/output_images/test_roi.jpg "test_roi"
 [image5]: ./img/output_images/test_binary_warped.jpg "test_binary_warped"
-[image6]: ./examples/example_output.jpg "Output"
+[image6]: ./img/output_images/test_histogram.jpg "test_histogram"
+[image7]: ./img/output_images/test_polynomial.jpg "test_polynomial"
 [video1]: ./project_video.mp4 "Video"
 
 ### Camera Calibration
@@ -72,15 +73,11 @@ The code for this step is contained in the `perspective_transform()` function on
 ### Lane Line Fitting
 The final step in the pipeline is to map the isolated lane line pixels to left and right lane line polynomials and determine the lane curvature. I found where the left and right lane lines start by plotting a histogram of where the binary activations occur across the lower half of the image. By adding up the pixel values along each column in the image, I was able to find the two peaks where the base of the lane lines occur, as shown in the image below.
 
-** add histogram picture **
+![alt text][image6]
 
-After finding the starting points of the lane lines, I used sliding windows moving upward in the image (further along the road) to determine where the lane lines go, as shown in the image below.
+After finding the starting points of the lane lines, I used sliding windows moving upward in the image (farther along the road) to determine where the lane lines go and fit polynomials to the left and right lanes, as shown in the image below.
 
-** add sliding window picture ** 
-
-Furthermore, instead of repeating the lane-line search from scratch every frame, once you've found the lane line from the previous frame it's more efficient to do a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines this time).
-
-** add green search image **
+![alt text][image7]
 
 After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point. Since the curvature depends on the radius, the smaller the radius, the greater the curvature (and vice versa); the radius of curvature *R* is the inverse of the curvature *K*. After finding the radius of curvature, I converted the number from pixel space to real-world space. 
 
@@ -89,6 +86,9 @@ The final segmented image with the overlayed lane information is shown below. Th
 ### Video Pipeline
 After completing the pipeline for a single image frame, the final part of the project is to extend the pipeline to work on video.
 
+Furthermore, instead of repeating the lane-line search from scratch every frame, once you've found the lane line from the previous frame it's more efficient to do a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines this time).
+
+** add green search image **
 
 ### Lessons Learned and Future Work
 
