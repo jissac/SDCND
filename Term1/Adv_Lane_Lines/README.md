@@ -30,6 +30,7 @@ An example of the final output is shown below:
 [image5]: ./img/output_images/test_binary_warped.jpg "test_binary_warped"
 [image6]: ./img/output_images/test_histogram.jpg "test_histogram"
 [image7]: ./img/output_images/test_polynomial.jpg "test_polynomial"
+[image8]: ./img/output_images/test_final.jpg "test_final"
 [video1]: ./project_video.mp4 "Video"
 
 ### Camera Calibration
@@ -81,10 +82,12 @@ After finding the starting points of the lane lines, I used sliding windows movi
 
 After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point. Since the curvature depends on the radius, the smaller the radius, the greater the curvature (and vice versa); the radius of curvature *R* is the inverse of the curvature *K*. After finding the radius of curvature, I converted the number from pixel space to real-world space. 
 
-The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, `lane_offset()`, `draw_fill_lanes()`, `measure_curvature_pixels_meters()` on lines 142 throught 330 in the file `lane-utils.py`.
+The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, `measure_curvature_pixels_meters()`, `lane_offset()`, and `draw_fill_lanes()` on lines 142 throught 330 in the file `lane-utils.py`.
+
+![alt text][image8]
 
 ### Video Pipeline
-After completing the pipeline for a single image frame, the final part of the project is to extend the pipeline to work on video.
+After completing the pipeline for image frames, the final part of the project is to extend the pipeline to work on video (sequential image frames). In this case, however, you're going to keep track of things like where your last several detections of the lane lines were and what the curvature was, so you can properly treat new detections. To do this, it's useful to define a Line() class to keep track of all the interesting parameters you measure from frame to frame. Here's an example:
 
 Furthermore, instead of repeating the lane-line search from scratch every frame, once you've found the lane line from the previous frame it's more efficient to do a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines this time).
 
