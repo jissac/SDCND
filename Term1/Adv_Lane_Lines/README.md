@@ -87,82 +87,12 @@ The final segmented image with the overlayed lane information is shown below. Th
 ![alt text][image8]
 
 ### Video Pipeline
-After completing the pipeline for image frames, the final part of the project is to extend the pipeline to work on video (sequential image frames). In this case, however, you're going to keep track of things like where your last several detections of the lane lines were and what the curvature was, so you can properly treat new detections. To do this, it's useful to define a Line() class to keep track of all the interesting parameters you measure from frame to frame. Here's an example:
-
-Furthermore, instead of repeating the lane-line search from scratch every frame, once you've found the lane line from the previous frame it's more efficient to do a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines this time).
+After completing the pipeline for image frames, the final part of the project is to extend the pipeline to work on video (sequential image frames). I found that averaging the lane line predictions over the previous 10 frames gave smoother results. Furthermore, instead of repeating the lane-line search from scratch every frame, after the first detection I did a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines).
 
 ** add green search image **
 
+The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, `measure_curvature_pixels_meters()`, `lane_offset()`, and `draw_fill_lanes()` on lines 142 throught 330 in the file `lane-utils.py`.
+
 ### Lessons Learned and Future Work
-
-### References
-Udacity 
-https://www.intmath.com/applications-differentiation/8-radius-curvature.php
-
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
-
-![alt text][image1]
-
-#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
-
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
-
-```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
-```
-
-This resulted in the following source and destination points:
-
-| Source        | Destination   | 
-|:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
-
-I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
-
-![alt text][image4]
-
-#### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
-
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
-
-![alt text][image3]
-
-#### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
-
-I did this in lines # through # in my code in `my_other_file.py`
-
-#### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
-
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
-
-![alt text][image6]
-
----
-
-### Pipeline (video)
-
-#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
-
-Here's a [link to my video result](./project_video.mp4)
-
----
-
-### Discussion
-
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+I learned a lot during this challenging project - especially the end-to-end work needed to design an effective lane finding algorithm. There were a lot of parts to fit together in order to copmlete the project, from camera calibration to correctly mapping out the lanes. I spent a lot of time
+For future work, I can improve on the algorithm to work robustly on the challenge video. Due to the intense sun glare and sharp turns in the video, my lane finding algorithm struggled to consistently map out the lanes. 
