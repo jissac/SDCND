@@ -82,17 +82,16 @@ After finding the starting points of the lane lines, I used sliding windows movi
 
 After finding and fitting a polynomial to the pixel positions, I computed the radius of curvature of the fit using the following formula: `f(y)=Ay^2+By+C`. The curvature of a given curve at a particular point is the curvature of the approximating circle at that point. Since the curvature depends on the radius, the smaller the radius, the greater the curvature (and vice versa); the radius of curvature *R* is the inverse of the curvature *K*. After finding the radius of curvature, I converted the number from pixel space to real-world space. 
 
-The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, `measure_curvature_pixels_meters()`, `lane_offset()`, and `draw_fill_lanes()` on lines 142 throught 330 in the file `lane-utils.py`.
+The final segmented image with the overlayed lane information is shown below. The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, `measure_curvature_pixels_meters()`, `lane_offset()`, and `draw_fill_lanes()` on lines 143 throught 334 in the file `lane-utils.py`.
 
 ![alt text][image8]
 
 ### Video Pipeline
-After completing the pipeline for image frames, the final part of the project is to extend the pipeline to work on video (sequential image frames). I found that averaging the lane line predictions over the previous 10 frames gave smoother results. Furthermore, instead of repeating the lane-line search from scratch every frame, after the first detection I did a highly targeted search in a margin around the previous line position, as shown below (the green shaded area shows where I searched for the lines).
+After completing the pipeline for image frames, the final part of the project is to extend the pipeline to work on video (sequential image frames). I found that averaging the lane line predictions over the previous 10 frames gave smoother results. Furthermore, instead of repeating the lane-line search from scratch every frame, after the first detection I did a highly targeted search in a margin around the previous line position.
 
-** add green search image **
-
-The code for this step is found in the functions `hist()`, `find_lane_pixels()`, `fit_polynomial()`, `measure_curvature_pixels_meters()`, `lane_offset()`, and `draw_fill_lanes()` on lines 142 throught 330 in the file `lane-utils.py`.
+The code for this step is found in the function `search_around_poly()` on lines 336 throught 365 in the file `lane-utils.py` and in the 'Video Pipeline' section in the file `Adv_lane_finding_project.ipynb`.
 
 ### Lessons Learned and Future Work
-I learned a lot during this challenging project - especially the end-to-end work needed to design an effective lane finding algorithm. There were a lot of parts to fit together in order to copmlete the project, from camera calibration to correctly mapping out the lanes. I spent a lot of time
-For future work, I can improve on the algorithm to work robustly on the challenge video. Due to the intense sun glare and sharp turns in the video, my lane finding algorithm struggled to consistently map out the lanes. 
+I learned a lot during this challenging project - especially the end-to-end work needed to design an effective lane finding algorithm. There were a lot of parts to fit together in order to complete the project, from camera calibration to correctly mapping out the lanes. I spent a lot of time testing out different hyperparameters to tune the pipeline and was able to settle on certain ones that gave good results.
+
+For future work, I can improve on the algorithm to work robustly on the challenge video. Due to the intense sun glare and sharp turns in the video, my lane finding algorithm struggled to consistently map out the lanes. Furthermore, bad weather like rain or snow could obscure the camera or make lane lines harder to detect. For these scenarios, a more robust algorithm is necessary for accurate lane line detection.
