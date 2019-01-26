@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 * Warp the detected lane boundaries back onto the original image.
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 
-An example of the final output is shown below. The code for this project is contained in the files `lane-utils.py` and `Adv_lane_finding_project.ipynb`. 
+An example of the final output is shown below. The code for this project is contained in the files `./src/lane-utils.py` and `./notebooks/Adv_lane_finding_project.ipynb`. 
 
 ![](adv_lane_line.gif)
 
