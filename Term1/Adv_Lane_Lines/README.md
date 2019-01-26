@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 An example of the final output is shown below:
 
-** add image of final lane line output ***
+![](adv_lane_line.gif)
 
 [//]: # (Image References)
 
