@@ -1,7 +1,7 @@
 # Term 1
 ### Computer Vision, Deep Learning, and Sensor Fusion
-In this term, we apply Computer Vision and Deep Learning on automotive problems 
-by teaching the car to detect lane lines, predict steering angle, and more only based on camera data.
+In this term, I applied computer vision and deep learning techniques on automotive problems 
+by teaching the car to detect lane lines, predict steering angles, etc. based on camera data.
 
 ## Projects
 - [Lane finding][1] 
