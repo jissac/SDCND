@@ -23,6 +23,8 @@ The code for this project is contained in the file `Traffic_Sign_Classifier_v1.i
 [image2]: ./output/training_hist.jpg "training_hist"
 [image3]: ./output/valid_hist.jpg "valid_hist"
 [image4]: ./output/test_hist.jpg "test_hist"
+[image5]: ./output/normalized.jpg "normalized"
+[image6]: ./output/web_images.jpg "web_images"
 
 ### Dataset Exploration
 The [German traffic dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset) is a set of 50,000 images, each image containing one traffic sign each, with a total of 43 classes. Below are some example images from the dataset.
@@ -34,7 +36,9 @@ There are a total of 34799 training examples, 4410 validation examples, and 1263
 ![alt text][image2] ![alt text][image3] ![alt text][image4]
 
 ### Design and Test Model Architecture
-I started by preprocessing the training and validation sets in order to make it easier for the CNN to learn during training: by normalizing the images to have a mean close to zero and equal variance, the feature values are distributed evenly which makes it easier for the optimizer to find a good solution.
+I started by converting the images to grayscale and preprocessing the training and validation sets in order to make it easier for the CNN to learn during training: by normalizing the images to have a mean close to zero and equal variance, the feature values are distributed evenly which makes it easier for the optimizer to find a good solution. The sample of the normalized images is shown below:
+
+![alt text][image5]
 
 I initialized the weights using `tf.truncated_normal`, which generates normally distributed values with a mean of `mu` and standard deviation of `sigma`. It also drops any values that are more than 2 standard deviations from the mean and re-calculates them. This is important for training as extreme weight values would cause the gradients to unevenly update during backpropagation. 
 
@@ -42,7 +46,14 @@ The model I used was based on the [LeNet architecture](http://vision.stanford.ed
 
 Input image --> conv1 --> pooling1 --> conv2 --> pooling2 --> conv3 --> pooling 3 --> fc1 --> fc2 --> logits
 
+After 15 ephocs of training, the validation accuracy was 96%. The test set accuracy was 93.2%.
+
 ### Testing on New Images
+After training on the given set of images, I found five new images of German traffic signs from the web. The normalized images are shown below:
+
+![alt text][image6]
+
+After using the previously computed weights to predict the classes of these new images, the accuracy came out to a dismal 40%, compared to the 93% accuracy on the original test set. Granted, the new set of five images isn't a statistically significant number
 
 ### Visualizing the Layers of the CNN
 
