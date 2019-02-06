@@ -60,3 +60,4 @@ The top five softmax probabilities for each of the images is shown below.
 ### Visualizing the Layers of the CNN
 
 ### Future Work
+To improve accuracy, I can use a deeper network that includes more convolutional layers and train on more images. From the histogram, there are certain classes of images that are under-represented in the training set - the CNN can be better trained by adding more images from these under-represented classes to the training set (through image augmentation techniques). 
