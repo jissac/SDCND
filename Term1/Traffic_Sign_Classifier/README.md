@@ -55,7 +55,8 @@ After training on the given set of images, I found five new images of German tra
 
 After using the previously computed weights to predict the classes of these new images, the accuracy came out to only 40% (2 images correctly classified), compared to the 93% accuracy on the original test set. Increasing the number of examples in this new test set and making sure the quality of the images is consistent with the training set (traffic signs centered in image, not at an angle or too pixelated) would help with the new image classification accuracy. 
 
-The top five softmax probabilities for each of the images is shown below. 
+The top five softmax probabilities for each of the images are shown below. 
+
 
 ### Visualizing the Layers of the CNN
 
