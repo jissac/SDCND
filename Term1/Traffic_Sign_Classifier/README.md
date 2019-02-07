@@ -57,8 +57,24 @@ After using the previously computed weights to predict the classes of these new 
 
 The top five softmax probabilities for each of the images are shown below. 
 
+`TopKV2(values=array([[  9.99955773e-01,   4.29769716e-05,   7.73067654e-07,
+          4.52475035e-07,   3.57474605e-09],
+       [  1.00000000e+00,   1.89763795e-11,   1.84643980e-13,
+          4.99651818e-16,   3.85972850e-16],
+       [  3.28641057e-01,   3.09987396e-01,   2.82924801e-01,
+          5.49226105e-02,   1.09103071e-02],
+       [  9.93718982e-01,   3.74658266e-03,   1.58248190e-03,
+          5.13853913e-04,   3.42320214e-04],
+       [  9.99719083e-01,   2.80903769e-04,   2.95544087e-08,
+          8.05628897e-09,   2.71145717e-10]], dtype=float32), indices=array([[40, 23, 19, 11, 28],
+       [17, 14,  9, 34, 10],
+       [34, 35, 13, 26, 28],
+       [ 5, 40,  1,  8, 12],
+       [25, 24, 30, 20, 14]], dtype=int32))`
+
+Comparing the top predicted labels [40 17 34 5 25] with the ground truth values of [23 17  4 27 25], we confirm that the model got two images correct. Since the softmax probabilities all add to one, we can see that the model was very sure of it's predictions for images 1,2,4,and 5 (.99 or greater), allbeit incorrectly for images 1 and 4. 
 
 ### Visualizing the Layers of the CNN
-
+After successfully training your neural network you can see what it's feature maps look like by plotting the output of the network's weight layers in response to a test stimuli image. From these plotted feature maps, it's possible to see what characteristics of an image the network finds interesting. For a sign, maybe the inner network feature maps react with high activation to the sign's boundary outline or to the contrast in the sign's painted symbol.
 ### Future Work
 To improve accuracy, I can use a deeper network that includes more convolutional layers and train on more images. From the histogram, there are certain classes of images that are under-represented in the training set - the CNN can be better trained by adding more images from these under-represented classes to the training set (through image augmentation techniques). 
