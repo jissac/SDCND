@@ -25,6 +25,7 @@ The code for this project is contained in the file `Traffic_Sign_Classifier_v1.i
 [image4]: ./output/test_hist.jpg "test_hist"
 [image5]: ./output/normalized.jpg "normalized"
 [image6]: ./output/web_images.jpg "web_images"
+[image7]: ./output/Feature_viz.png "feature_viz"
 
 ### Dataset Exploration
 The [German traffic dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset) is a set of 50,000 images, each image containing one traffic sign each, with a total of 43 classes. Below are some example images from the dataset.
@@ -57,24 +58,27 @@ After using the previously computed weights to predict the classes of these new 
 
 The top five softmax probabilities for each of the images are shown below. 
 
-`TopKV2(values=array([[  9.99955773e-01,   4.29769716e-05,   7.73067654e-07,
-          4.52475035e-07,   3.57474605e-09],
-       [  1.00000000e+00,   1.89763795e-11,   1.84643980e-13,
-          4.99651818e-16,   3.85972850e-16],
-       [  3.28641057e-01,   3.09987396e-01,   2.82924801e-01,
-          5.49226105e-02,   1.09103071e-02],
-       [  9.93718982e-01,   3.74658266e-03,   1.58248190e-03,
-          5.13853913e-04,   3.42320214e-04],
-       [  9.99719083e-01,   2.80903769e-04,   2.95544087e-08,
-          8.05628897e-09,   2.71145717e-10]], dtype=float32), indices=array([[40, 23, 19, 11, 28],
-       [17, 14,  9, 34, 10],
-       [34, 35, 13, 26, 28],
-       [ 5, 40,  1,  8, 12],
-       [25, 24, 30, 20, 14]], dtype=int32))`
+`TopKV2(values=array([[  5.68378150e-01,   2.29687467e-01,   1.72620669e-01,
+          2.05079950e-02,   4.13777446e-03],
+       [  9.99371350e-01,   2.41140224e-04,   1.92313732e-04,
+          1.89768194e-04,   1.65519373e-06],
+       [  9.54150975e-01,   3.95272262e-02,   4.81002731e-03,
+          1.34040369e-03,   1.70177722e-04],
+       [  1.00000000e+00,   3.07106380e-16,   3.06713711e-19,
+          2.72498174e-20,   2.09481934e-23],
+       [  9.99996305e-01,   2.35562629e-06,   1.02180149e-06,
+          1.49431941e-07,   8.77318058e-08]], dtype=float32), indices=array([[33, 15, 13, 35, 18],
+       [19, 40, 37, 11, 10],
+       [40, 12,  4,  1, 26],
+       [17,  9, 14, 10, 34],
+       [25, 24, 22, 31, 29]], dtype=int32))
+GroundTruth:  [ 4 23 27 17 25]`
 
-Comparing the top predicted labels [40 17 34 5 25] with the ground truth values of [23 17  4 27 25], we confirm that the model got two images correct. Since the softmax probabilities all add to one, we can see that the model was very sure of it's predictions for images 1,2,4,and 5 (.99 or greater), allbeit incorrectly for images 1 and 4. 
+Comparing the top predicted labels [33 19 40 17 25] with the ground truth values of [4 23 27 17 25], we confirm that the model got the last two images correct. Since the softmax probabilities all add to one, we can see that the model was very sure of it's predictions for images 2,3,4,and 5 (.99 or greater), allbeit incorrectly. 
 
 ### Visualizing the Layers of the CNN
-After successfully training your neural network you can see what it's feature maps look like by plotting the output of the network's weight layers in response to a test stimuli image. From these plotted feature maps, it's possible to see what characteristics of an image the network finds interesting. For a sign, maybe the inner network feature maps react with high activation to the sign's boundary outline or to the contrast in the sign's painted symbol.
+After training the CNN it's useful to show how the feature maps look like by plotting the output of the network's weight layers in response to a test stimuli image. From these plotted feature maps, it's possible to see what characteristics of an image the network found interesting. It's interesting to see the higher-level features and lower-level edges and lines that the CNN found important, as shown from the conv1 and conv2 visualizations below.
+
+![alt text][image7]
 ### Future Work
 To improve accuracy, I can use a deeper network that includes more convolutional layers and train on more images. From the histogram, there are certain classes of images that are under-represented in the training set - the CNN can be better trained by adding more images from these under-represented classes to the training set (through image augmentation techniques). 
