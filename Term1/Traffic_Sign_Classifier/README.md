@@ -47,7 +47,7 @@ The model I used was based on the [LeNet architecture](http://vision.stanford.ed
 
 Input image --> conv1 --> pooling1 --> conv2 --> pooling2 --> conv3 --> pooling 3 --> fc1 --> fc2 --> logits
 
-After 15 ephocs of training, the validation accuracy was 96%. The test set accuracy was 93.2%.
+After 20 ephocs of training, the validation accuracy was 96.2%. The test set accuracy was 94.2%.
 
 ### Testing on New Images
 After training on the given set of images, I found five new images of German traffic signs from the web. The normalized images are shown below:
