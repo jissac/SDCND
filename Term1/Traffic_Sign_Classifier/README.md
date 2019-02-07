@@ -74,7 +74,7 @@ The top five softmax probabilities for each of the images are shown below.
        [25, 24, 22, 31, 29]], dtype=int32))
 GroundTruth:  [ 4 23 27 17 25]`
 
-Comparing the top predicted labels [33 19 40 17 25] with the ground truth values of [4 23 27 17 25], we confirm that the model got the last two images correct. Since the softmax probabilities all add to one, we can see that the model was very sure of it's predictions for images 2,3,4,and 5 (.99 or greater), allbeit incorrectly. 
+Comparing the top predicted labels [33 19 40 17 25] with the ground truth values of [4 23 27 17 25], we confirm that the model got the last two images correct. Since the softmax probabilities all add to one, we can see that the model was very sure of its predictions for images 2,3,4,and 5 (.99 or greater), allbeit incorrectly. 
 
 ### Visualizing the Layers of the CNN
 After training the CNN it's useful to show how the feature maps look like by plotting the output of the network's weight layers in response to a test stimuli image. From these plotted feature maps, it's possible to see what characteristics of an image the network found interesting. It's interesting to see the higher-level features and lower-level edges and lines that the CNN found important, as shown from the conv1 and conv2 visualizations below.
