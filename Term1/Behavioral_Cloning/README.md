@@ -11,6 +11,10 @@ The goals / steps of this project are the following:
 * Train and validate the model with a training and validation set
 * Test that the model successfully drives around the track one without leaving the road
 
+A visualization of the trained network driving itself around the test track is shown below.
+
+(insert gif)
+
 [//]: # (Image References)
 
 [image1]: ./examples/placeholder.png "Model Visualization"
