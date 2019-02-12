@@ -33,8 +33,9 @@ My project includes the following files:
 * `README.md` summarizing the results 
 
 ### Model Architecture
-My model is based on the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py) which consists of a 
+My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by the output layer.
 
+The network takes as input a three channel (RGB) color image of height x pixels and width y pixels. It 
 
 with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 
