@@ -1,11 +1,9 @@
-# **Behavioral Cloning** 
+# **Behavioral Cloning Project** 
 
 
 ### In this project, I trained a convolutional neural network (CNN) to learn from simulated driving data and then drive itself over a test track.
 
 ---
-
-**Behavioral Cloning Project**
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
