@@ -7,13 +7,18 @@ from keras.layers import Dense, Dropout, Flatten, Lambda, ELU
 from keras.layers.convolutional import Conv2D
 from keras import backend as K 
 from keras.utils import plot_model
+from sklearn.utils import shuffle
+from sklearn.model_selection import train_test_split
 import numpy as numpy
 from pandas import read_csv
 import matplotlib.pyplot as plt
 
 
 def cnn_model():
-    ch, row, col = 3,320,160
+    '''
+    Defines CNN model architecture
+    '''
+    row, col, ch = 320, 160, 3
     
     model = Sequential()
     model.add(Lambda(lambda x: x/255.,
@@ -35,6 +40,23 @@ def cnn_model():
     model.compile(optimizer='adam',loss='mse')
     
     return model
+
+def load_csv_log(filepath_log):
+    '''
+    Loads driving log into a dataframe
+    '''
+    log_df = read_csv(filepath_log)
+
+    return log_df
+
+def split_data(log_df,split_ratio=0.2):
+    '''
+    Shuffles and splits log data into training and validation sets
+    '''
+    train, validation = train_test_split(log_df,test_size=split_ratio)
+
+    return train, validation
+
 
 
 if __name__ == "__main__":
