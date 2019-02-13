@@ -32,6 +32,9 @@ My project includes the following files:
 * `model.h5` containing a trained convolution neural network 
 * `README.md` summarizing the results 
 
+### Simulation Data
+To begin training my model, I used the provided Udacity dataset. The dataset consists of 24,000 camera images of the car driving around the track. There are three cameras collecting data
+
 ### Model Architecture
 My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by the output layer.
 
