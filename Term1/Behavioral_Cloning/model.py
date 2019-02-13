@@ -5,62 +5,36 @@ import argparse
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Lambda, ELU
 from keras.layers.convolutional import Conv2D
+from keras import backend as K 
+from keras.utils import plot_model
+import numpy as numpy
+from pandas import read_csv
+import matplotlib.pyplot as plt
+
 
 def cnn_model():
-    ch, row, col = 3,160,320
+    ch, row, col = 3,320,160
     
     model = Sequential()
     model.add(Lambda(lambda x: x/255.,
-                     input_shape=(ch,row,col),
-                     output_shape=(ch,row,col)))
-    model.add(Conv2D(16, 8, 8, s
-
-
-
-
-
-import os
-import argparse
-import json
-from keras.models import Sequential, Model
-from keras.layers import Dense, Dropout, Flatten, Lambda, ELU
-from keras.layers.convolutional import Convolution2D
-
-from server import client_generator
-
-
-def gen(hwm, host, port):
-  for tup in client_generator(hwm=hwm, host=host, port=port):
-    X, Y, _ = tup
-    Y = Y[:, -1]
-    if X.shape[1] == 1:  # no temporal context
-      X = X[:, -1]
-    yield X, Y
-
-
-def get_model(time_len=1):
-  ch, row, col = 3, 160, 320  # camera format
-
-  model = Sequential()
-  model.add(Lambda(lambda x: x/127.5 - 1.,
-            input_shape=(ch, row, col),
-            output_shape=(ch, row, col)))
-  model.add(Convolution2D(16, 8, 8, subsample=(4, 4), border_mode="same"))
-  model.add(ELU())
-  model.add(Convolution2D(32, 5, 5, subsample=(2, 2), border_mode="same"))
-  model.add(ELU())
-  model.add(Convolution2D(64, 5, 5, subsample=(2, 2), border_mode="same"))
-  model.add(Flatten())
-  model.add(Dropout(.2))
-  model.add(ELU())
-  model.add(Dense(512))
-  model.add(Dropout(.5))
-  model.add(ELU())
-  model.add(Dense(1))
-
-  model.compile(optimizer="adam", loss="mse")
-
-  return model
+                     input_shape=(row,col,ch),
+                     output_shape=(row,col,ch)))
+    model.add(Conv2D(filters=16,kernel_size=(8,8),strides=(4,4),padding='SAME'))
+    model.add(ELU())
+    model.add(Conv2D(filters=32,kernel_size=(5,5),strides=(2,2),padding='SAME'))
+    model.add(ELU())
+    model.add(Conv2D(filters=64,kernel_size=(5,5),strides=(2,2),padding='SAME'))
+    model.add(Flatten())
+    model.add(Dropout(0.2))
+    model.add(ELU())
+    model.add(Dense(512))
+    model.add(Dropout(0.5))
+    model.add(ELU())
+    model.add(Dense(1))
+    
+    model.compile(optimizer='adam',loss='mse')
+    
+    return model
 
 
 if __name__ == "__main__":
