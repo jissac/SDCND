@@ -17,9 +17,9 @@ A visualization of the trained network driving itself around the test track is s
 
 [//]: # (Image References)
 
-[image1]: ./imgs/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
+[image1]: ./imgs/driver_log.jpg "drive log"
+[image2]: ./imgs/pre-augment.jpg "pre augmentation"
+[image3]: ./imgs/post-augment.jpg "post augmentation"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
@@ -35,8 +35,16 @@ My project includes the following files:
 ### Simulation Data
 To begin training my model, I used the provided Udacity dataset which consists of camera images of the car driving around the track. There are three cameras mounted left, center, and right of the windshield that simultaneously collect data - having the three cameras helps the network generalize while training. Furthermore, having the left and right images help with correcting the steering angle when the car is off center, as the recorded steering angle corresponds to the center camera image. Therefore, when training with the left and right camera images, I added a correction factor that adjusted the steering angle depending on which camera image was used. The log file containing the driving data is shown below (only the steering angle data was used as an output label).
 
+![alt text][image1]
+
 ### Data Augmentation
-Using the left and right camera images provides more data but there are ways to increase the dataset more. As seen in the figure below, most of the data is 
+As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
+
+![alt text][image2]
+
+To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
+
+![alt text][image3]
 
 ### Model Architecture
 My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by the output layer.
@@ -47,7 +55,8 @@ with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24)
 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
-
+### More Data
+After training the model weights on the provided dataset, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road.
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
