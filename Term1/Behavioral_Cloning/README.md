@@ -17,6 +17,9 @@ A visualization of the trained network driving itself around the test track is s
 
 [//]: # (Image References)
 
+[image0a]: https://images.unsplash.com/photo-1523676060187-f55189a71f5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80 "drive log"
+[image0b]: https://images.unsplash.com/photo-1523676060187-f55189a71f5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80 "drive log"
+[image0c]: https://images.unsplash.com/photo-1523676060187-f55189a71f5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80 "drive log"
 [image1]: ./imgs/driver_log.jpg "drive log"
 [image2]: ./imgs/pre-augment.jpg "pre augmentation"
 [image3]: ./imgs/post-augment.jpg "post augmentation"
@@ -33,9 +36,17 @@ My project includes the following files:
 * `README.md` summarizing the results 
 
 ### Simulation Data
-To begin training my model, I used the provided Udacity dataset which consists of camera images of the car driving around the track. There are three cameras mounted left, center, and right of the windshield that simultaneously collect data - having the three cameras helps the network generalize while training. Furthermore, having the left and right images help with correcting the steering angle when the car is off center, as the recorded steering angle corresponds to the center camera image. Therefore, when training with the left and right camera images, I added a correction factor that adjusted the steering angle depending on which camera image was used. The log file containing the driving data is shown below (only the steering angle data was used as an output label).
+To begin training my model, I used the provided Udacity dataset which consists of camera images of the car driving around the track. There are three cameras mounted left, center, and right of the windshield that simultaneously collect data. 
+
+![alt text][image0a] ![alt text][image0b] ![alt text][image0c]
+
+Having the three cameras helps the network generalize while training. Furthermore, having the left and right images help with correcting the steering angle when the car is off center, as the recorded steering angle corresponds to the center camera image. Therefore, when training with the left and right camera images, I added a correction factor that adjusted the steering angle depending on which camera image was used. The log file containing the driving data is shown below (only the steering angle data was used as an output label).
 
 ![alt text][image1]
+
+I also cropped and resized the image to remove the extraneous pixels of the sky that do not affect the path of the vehicle. This also reduces the size of the image and speeds up training time as compared to the original image.
+
+?? Does cropping and resizing/not resizing affect training in any way? investigate
 
 ### Data Augmentation
 As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
