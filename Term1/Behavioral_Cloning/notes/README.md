@@ -6,4 +6,6 @@ https://medium.com/@erikshestopal/udacity-behavioral-cloning-using-keras-ff55055
 
 Image augmentation notes: https://medium.com/nanonets/how-to-use-deep-learning-when-you-have-limited-data-part-2-data-augmentation-c26971dc8ced       
 
+Difference between .fit() and .fit_generator() in Keras: https://medium.com/difference-engine-ai/keras-a-thing-you-should-know-about-keras-if-you-plan-to-train-a-deep-learning-model-on-a-large-fdd63ce66bd2        
+
 
