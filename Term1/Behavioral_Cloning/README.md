@@ -44,21 +44,8 @@ Having the three cameras helps the network generalize while training. Furthermor
 
 ![alt text][image1]
 
-I also cropped and resized the image to remove the extraneous pixels of the sky that do not affect the path of the vehicle. This also reduces the size of the image and speeds up training time as compared to the original image.
-
-?? Does cropping and resizing/not resizing affect training in any way? investigate
-
-### Data Augmentation
-As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
-
-![alt text][image2]
-
-To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
-
-![alt text][image3]
-
 ### Model Architecture
-My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by the output layer.
+My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by a final output layer. I used batch normalization
 
 The network takes as input a three channel (RGB) color image of height x pixels and width y pixels. It 
 
@@ -66,6 +53,13 @@ with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24)
 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
-### More Data
+### More Data / Data Augmentation
 After training the model weights on the provided dataset, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road.
 
+As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
+
+![alt text][image2]
+
+To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
+
+![alt text][image3]
