@@ -17,9 +17,9 @@ A visualization of the trained network driving itself around the test track is s
 
 [//]: # (Image References)
 
-[image0a]: https://images.unsplash.com/photo-1523676060187-f55189a71f5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80 "drive log"
-[image0b]: https://images.unsplash.com/photo-1523676060187-f55189a71f5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80 "drive log"
-[image0c]: https://images.unsplash.com/photo-1523676060187-f55189a71f5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80 "drive log"
+[image0a]: ./imgs/center.jpg "center"
+[image0b]: ./imgs/left.jpg "left"
+[image0c]: ./imgs/right.jpg "right"
 [image1]: ./imgs/driver_log.jpg "drive log"
 [image2]: ./imgs/pre-augment.jpg "pre augmentation"
 [image3]: ./imgs/post-augment.jpg "post augmentation"
