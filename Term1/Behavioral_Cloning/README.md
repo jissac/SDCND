@@ -45,13 +45,12 @@ Having the three cameras helps the network generalize while training. Furthermor
 ![alt text][image1]
 
 ### Model Architecture
-My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by a final output layer. I used batch normalization
+My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by a final output layer. 
 
-The network takes as input a three channel (RGB) color image of height x pixels and width y pixels. It 
+The network takes as input a three channel (RGB) color image of height x pixels and width y pixels. Using the Keras `Cropping2D` function, I remove portions of the image that contain irrelevant data like the sky and the top of the car hood. An added benefit is that cropping also reduces the image size, speeding up training. I use a Keras Lambda layer to normalize the image and center it around zero mean. The layer architecture is shown below. 
 
-with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+
 
 ### More Data / Data Augmentation
 After training the model weights on the provided dataset, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road.
