@@ -7,6 +7,10 @@ from keras.layers import Dense, Dropout, Flatten, Lambda, ELU
 from keras.layers.convolutional import Conv2D
 from keras import backend as K 
 from keras.utils import plot_model
+from keras.layers import BatchNormalization
+from keras.layers import Cropping2D
+import cv2
+
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 import numpy as numpy
@@ -15,19 +19,21 @@ import matplotlib.pyplot as plt
 
 
 def cnn_model():
-    '''
-    Defines CNN model architecture
-    '''
-    row, col, ch = 320, 160, 3
+    ch, row, col = 3,320,160
     
     model = Sequential()
+    model.add(Cropping2D(cropping=((60,20), (0,0)), input_shape=(row,col,ch)))
+
     model.add(Lambda(lambda x: x/255.,
-                     input_shape=(row,col,ch),
-                     output_shape=(row,col,ch)))
+                     input_shape=(row,col,ch)))
     model.add(Conv2D(filters=16,kernel_size=(8,8),strides=(4,4),padding='SAME'))
     model.add(ELU())
+    
+    model.add(BatchNormalization())
     model.add(Conv2D(filters=32,kernel_size=(5,5),strides=(2,2),padding='SAME'))
     model.add(ELU())
+    
+    model.add(BatchNormalization())
     model.add(Conv2D(filters=64,kernel_size=(5,5),strides=(2,2),padding='SAME'))
     model.add(Flatten())
     model.add(Dropout(0.2))
@@ -56,6 +62,15 @@ def split_data(log_df,split_ratio=0.2):
     train, validation = train_test_split(log_df,test_size=split_ratio)
 
     return train, validation
+
+def augment_imgs():
+    '''
+    Crops, resizes, and horizontally flips each image
+    '''
+    return None
+
+def load_imgs(log_df, img_path):
+
 
 
 
