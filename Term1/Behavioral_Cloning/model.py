@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 
 def cnn_model():
-    ch, row, col = 3,320,160
+    row, col, ch = 320,160,3
     
     model = Sequential()
     model.add(Cropping2D(cropping=((60,20), (0,0)), input_shape=(row,col,ch)))
@@ -35,12 +35,15 @@ def cnn_model():
     
     model.add(BatchNormalization())
     model.add(Conv2D(filters=64,kernel_size=(5,5),strides=(2,2),padding='SAME'))
+
     model.add(Flatten())
     model.add(Dropout(0.2))
     model.add(ELU())
+
     model.add(Dense(512))
     model.add(Dropout(0.5))
     model.add(ELU())
+
     model.add(Dense(1))
     
     model.compile(optimizer='adam',loss='mse')
@@ -63,43 +66,55 @@ def split_data(log_df,split_ratio=0.2):
 
     return train, validation
 
-def augment_imgs():
+def augmentor(batch_sample):
     '''
     Crops, resizes, and horizontally flips each image
     '''
-    return None
+    steering_angle = np.float32(batch_sample[3])
+    images, steering_angles = [],[]
+    for camera_location in range(3):
+        name = './IMG/'+batch_sample[camera_location].split('/')[-1]
+        print(name)
+        image = cv2.imread(name)
+        image_rgb = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+        
+        images.append(image_rgb)
+        
+        if camera_location == 1:
+            steering_angles.append(steering_angle + 0.2)
+        elif camera_location == 2:
+            steering_angles.append(steering_angle - 0.2)
+        else:
+            steering_angles.append(steering_angle)
+        
+        if camera_location == 0 & steering_angle != 0:
+            flipped = np.fliplr(image_rgb)
+            images.append(flipped_image)
+            steering_angles.append(-steering_angle)
+    return images, steering_angles
 
-def load_imgs(log_df, img_path):
-
-
-
+def generator(samples, batch_size=2):
+    '''
+    Function that generates data for the model
+    '''
+    num_samples = len(samples)
+    while True:
+        shuffle(samples)
+        for offset in range(0,num_samples,batch_size):
+            batch_samples = samples.iloc[offset:offset+batch_size]
+            #print(batch_samples)
+            for i, batch_sample in batch_samples.iterrows():
+                images, steering_angles = augmentor(batch_sample)
+            X_train, y_train = np.array(images), np.array(steering_angles)
+            yield shuffle(X_train, y_train)
 
 if __name__ == "__main__":
-  parser = argparse.ArgumentParser(description='Steering angle model trainer')
-  parser.add_argument('--host', type=str, default="localhost", help='Data server ip address.')
-  parser.add_argument('--port', type=int, default=5557, help='Port of server.')
-  parser.add_argument('--val_port', type=int, default=5556, help='Port of server for validation dataset.')
-  parser.add_argument('--batch', type=int, default=64, help='Batch size.')
-  parser.add_argument('--epoch', type=int, default=200, help='Number of epochs.')
-  parser.add_argument('--epochsize', type=int, default=10000, help='How many frames per epoch.')
-  parser.add_argument('--skipvalidate', dest='skipvalidate', action='store_true', help='Multiple path output.')
-  parser.set_defaults(skipvalidate=False)
-  parser.set_defaults(loadweights=False)
-  args = parser.parse_args()
+    '''
+    Train and save the model
+    '''
+    model = cnn_model()
+    log_file = load_csv_log('./driving_log.csv')
+    train, validation = split_data(log_file[0:20])
+    #print(train.head())
+    model.fit_generator(generator=generator(train),steps_per_epoch=len(train),epochs=1, verbose = 1)
 
-  model = get_model()
-  model.fit_generator(
-    gen(20, args.host, port=args.port),
-    samples_per_epoch=10000,
-    nb_epoch=args.epoch,
-    validation_data=gen(20, args.host, port=args.val_port),
-    nb_val_samples=1000
-  )
-  print("Saving model weights and configuration file.")
-
-  if not os.path.exists("./outputs/steering_model"):
-      os.makedirs("./outputs/steering_model")
-
-  model.save_weights("./outputs/steering_model/steering_angle.keras", True)
-  with open('./outputs/steering_model/steering_angle.json', 'w') as outfile:
-    json.dump(model.to_json(), outfile)
