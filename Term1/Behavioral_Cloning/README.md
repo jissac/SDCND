@@ -20,7 +20,7 @@ A visualization of the trained network driving itself around the test track is s
 [image0a]: ./imgs/center.jpg "center"
 [image0b]: ./imgs/left.jpg "left"
 [image0c]: ./imgs/right.jpg "right"
-[image1]: ./imgs/driver_log.jpg "drive log"
+[image1]: ./imgs/log_file.png "drive log"
 [image2]: ./imgs/pre-augment.jpg "pre augmentation"
 [image3]: ./imgs/post-augment.jpg "post augmentation"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
