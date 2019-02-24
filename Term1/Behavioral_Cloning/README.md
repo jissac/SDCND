@@ -21,7 +21,7 @@ A visualization of the trained network driving itself around the test track is s
 [image0b]: ./imgs/left.jpg "left"
 [image0c]: ./imgs/right.jpg "right"
 [image1]: ./imgs/log_file.png "drive log"
-[image2]: ./imgs/model.jpg "model"
+[image2]: ./imgs/model_summary.jpg "model summary"
 [image3]: ./imgs/post-augment.jpg "post augmentation"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
