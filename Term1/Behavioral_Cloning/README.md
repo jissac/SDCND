@@ -60,8 +60,13 @@ Clearly, the model wasn't able to learn with the limited dataset provided and ve
 
 As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
 
-![alt text][image2]
+![alt text][]
 
 To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
 
 ![alt text][image3]
+
+### Lessons learned
+Importance of collecting data
+
+### Future Work
