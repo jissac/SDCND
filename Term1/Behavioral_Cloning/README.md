@@ -51,6 +51,8 @@ The network takes as input a three channel (RGB) color image of height 160 pixel
 
 ![alt text][image2]
 
+After training the model for one epoch, the loss 
+
 ### More Data / Data Augmentation
 Training the model with the above parameters resulted in the following behavior:
 
