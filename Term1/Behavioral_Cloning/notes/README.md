@@ -14,4 +14,5 @@
 
 - https://medium.com/deep-learning-turkey/behavioral-cloning-udacity-self-driving-car-project-generator-bottleneck-problem-in-using-gpu-182ee407dbc5
 
+https://ezgif.com/video-to-gif       
 
