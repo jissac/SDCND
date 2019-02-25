@@ -51,14 +51,12 @@ The network takes as input a three channel (RGB) color image of height 160 pixel
 
 ![alt text][image2]
 
-After training the model for one epoch, the loss 
-
 ### More Data / Data Augmentation
-Training the model with the above parameters resulted in the following behavior:
+Training the model with the above parameters for one epoch resulted in the following behavior:
 
-(insert gif)
+![](./imgs/trained_1.gif)
 
-Clearly, the model wasn't able to learn with the limited dataset provided, therefore, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road.
+Clearly, the model wasn't able to learn with the limited dataset provided and veers off to the side of the road. Therefore, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road.
 
 As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
 
