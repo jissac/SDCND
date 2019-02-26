@@ -47,7 +47,7 @@ Having the three cameras helps the network generalize while training. Furthermor
 ### Model Architecture
 My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by a final output layer. 
 
-The network takes as input a three channel (RGB) color image of height 160 pixels and width 320 pixels. Using the Keras `Cropping2D` function, I remove portions of the image that contain irrelevant data like the sky and the top of the car hood. An added benefit is that cropping also reduces the image size, speeding up training. I use a Keras Lambda layer to normalize the image and center it around zero mean. I used Batch Normalization layers between the convolutional layers to speed up training of convolutional neural networks and reduce the sensitivity to network initialization. The layer architecture is shown below. 
+The network takes as input a three channel (RGB) color image of height 160 pixels and width 320 pixels. Using the Keras `Cropping2D` function, I remove portions of the image that contain irrelevant data like the sky and the top of the car hood. An added benefit is that cropping also reduces the image size, speeding up training. I use a Keras Lambda layer to normalize the image and center it around zero mean. I used Batch Normalization layers between the convolutional layers to speed up training and reduce the sensitivity to network initialization. The layer architecture is shown below. 
 
 ![alt text][image2]
 
@@ -56,7 +56,7 @@ Training the model with the given dataset and above model parameters for one epo
 
 ![](./imgs/trained_1.gif)
 
-Clearly, the model wasn't able to learn with the limited dataset provided and veers off to the side of the road. Therefore, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road.
+Clearly, the model wasn't able to learn with the limited dataset provided and veers off to the side of the road. Therefore, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road. After loading the pre-trained weights from the previous iteration, I re-trained the model for 5 epochs with the newly collected data.
 
 As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
 
