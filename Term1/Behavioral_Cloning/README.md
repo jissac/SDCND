@@ -47,12 +47,12 @@ Having the three cameras helps the network generalize while training. Furthermor
 ### Model Architecture
 My model is a modified version of the CNN proposed by the [comma.ai team](https://github.com/commaai/research/blob/master/train_steering_model.py). The model consists of three convolutional layers followed by a fully connected layer followed by a final output layer. 
 
-The network takes as input a three channel (RGB) color image of height 160 pixels and width 320 pixels. Using the Keras `Cropping2D` function, I remove portions of the image that contain irrelevant data like the sky and the top of the car hood. An added benefit is that cropping also reduces the image size, speeding up training. I use a Keras Lambda layer to normalize the image and center it around zero mean. The layer architecture is shown below. 
+The network takes as input a three channel (RGB) color image of height 160 pixels and width 320 pixels. Using the Keras `Cropping2D` function, I remove portions of the image that contain irrelevant data like the sky and the top of the car hood. An added benefit is that cropping also reduces the image size, speeding up training. I use a Keras Lambda layer to normalize the image and center it around zero mean. I used Batch Normalization layers between the convolutional layers to speed up training of convolutional neural networks and reduce the sensitivity to network initialization. The layer architecture is shown below. 
 
 ![alt text][image2]
 
 ### More Data / Data Augmentation
-Training the model with the above parameters for one epoch resulted in the following behavior:
+Training the model with the given dataset and above model parameters for one epoch resulted in the following behavior:
 
 ![](./imgs/trained_1.gif)
 
