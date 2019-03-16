@@ -22,7 +22,7 @@ A visualization of the trained network driving itself around the test track is s
 [image0c]: ./imgs/right.jpg "right"
 [image1]: ./imgs/log_file.png "drive log"
 [image2]: ./imgs/model_plot.png "model summary"
-[image3]: ./imgs/post-augment.jpg "post augmentation"
+[image3]: ./imgs/loss_track1_bkwd.jpg "loss"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
@@ -52,19 +52,23 @@ The network takes as input a three channel (RGB) color image of height 160 pixel
 ![alt text][image2]
 
 ### More Data / Data Augmentation
-Training the model with the given dataset and above model parameters for one epoch resulted in the following behavior:
+Training the model with the given dataset and above model parameters for one epoch resulted in the following behavior. Clearly, the model wasn't able to learn with the limited dataset provided and veers off to the side of the road.
 
 ![](./imgs/trained_1.gif)
 
-Clearly, the model wasn't able to learn with the limited dataset provided and veers off to the side of the road. Therefore, I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road. After loading the pre-trained weights from the previous iteration, I re-trained the model for 5 epochs with the newly collected data.
+I tweaked the model further by collecting more simulation data. I drove backwards around the track in order to combat the left-turn bias present in track one. I also drove off-center and weaved left and right in order to train the network how to respond when it goes off to the side of the road. After loading the pre-trained weights from the previous iteration, I re-trained the model for three epochs with the newly collected data. 
+
+The training and validation losses after this tweaking are shown below. The validation loss ends up being higher than the training loss, implying that the model is overfitting to the training data.
+
+![alt text][image3]
+
+To combat this overfitting, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
+
+![alt text][image3]
 
 As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
 
-![alt text][]
 
-To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
-
-![alt text][image3]
 
 ### Lessons learned
 Importance of collecting data
