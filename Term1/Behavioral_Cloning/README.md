@@ -23,7 +23,8 @@ A visualization of the trained network driving itself around the test track is s
 [image1]: ./imgs/log_file.png "drive log"
 [image2]: ./imgs/model_plot.png "model summary"
 [image3]: ./imgs/loss_track1_bkwd.jpg "loss"
-[image4]: ./imgs/steering_anlges.jpg "steering angles"
+[image4]: ./imgs/steering_angles.jpg "steering angles"
+
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
@@ -62,15 +63,15 @@ The training and validation losses after this tweaking are shown below. The vali
 
 ![alt text][image3]
 
-Furthermore, looking at the provided dataset, we can see that a majority of the images have steering angles between -0.5 and 0.5, with very little examples at the larger steering angles. 
+Furthermore, looking at the provided dataset, we can see that most of the steering angle data are zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
 
 ![alt text][image4]
 
-To combat this overfitting, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero. The results of this augmentation are shown below.
+To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was between -1 and -0.5 or 0.5 and 1. The results of this augmentation are shown below.
 
 
 
-As seen in the figure below, most of the steering angle data is zero because there are large portions of the track that are straight. However, this could cause the model to overfit to those straight-line cases and struggle on turns.
+As seen in the figure below, 
 
 
 
