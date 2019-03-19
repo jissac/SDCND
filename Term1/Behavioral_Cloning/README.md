@@ -41,7 +41,7 @@ To begin training my model, I used the provided Udacity dataset which consists o
 
 ![alt text][image0a] ![alt text][image0b] ![alt text][image0c]
 
-Having the three cameras helps the network generalize while training. Furthermore, having the left and right images help with correcting the steering angle when the car is off center, as the recorded steering angle corresponds to the center camera image. Therefore, when training with the left and right camera images, I added a correction factor that adjusted the steering angle depending on which camera image was used. The log file containing the driving data is shown below (only the steering angle data was used as an output label).
+Having the three cameras helps the network generalize while training. Furthermore, having the left and right images help with correcting the steering angle when the car is off center, as the recorded steering angle corresponds to the center camera image. Therefore, in addition to the center images, I trained the model with the left and right camera images by adding a correction factor that adjusted the steering angle depending on which camera image was used. The log file containing the driving data is shown below (only the steering angle data was used as an output label).
 
 ![alt text][image1]
 
@@ -67,13 +67,10 @@ Furthermore, looking at the provided dataset, we can see that most of the steeri
 
 ![alt text][image4]
 
-To combat this, I augmented the dataset by flipping the image horizontally and taking the negative of the steering measurement for any cases where the steering angle was between -1 and -0.5 or 0.5 and 1. The results of this augmentation are shown below.
+To combat this, I augmented the dataset (in addition to the previous augmentation done by using left and right images and adding a correction factor to the steering angles) by flipping the center image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero.
 
-
-
-As seen in the figure below, 
-
-
+### Running the Model
+I used the Keras method `fit_generator()` to train the network. The `fit_generator()` function works with datasets that are too large to fit into memory (RAM); it assumes that there is an underlying function that is generating the data for it infinitely. By setting the `steps_per_epoch` to be the total number of training data points divided by the batch size, the `fit_generator()` function will know to move from one epoch to the other once it hits the specified step count.
 
 ### Lessons learned
 Importance of collecting data
