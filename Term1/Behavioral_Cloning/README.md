@@ -70,9 +70,10 @@ Furthermore, looking at the provided dataset, we can see that most of the steeri
 To combat this, I augmented the dataset (in addition to the previous augmentation done by using left and right images and adding a correction factor to the steering angles) by flipping the center image horizontally and taking the negative of the steering measurement for any cases where the steering angle was not zero.
 
 ### Running the Model
-I used the Keras method `fit_generator()` to train the network. The `fit_generator()` function works with datasets that are too large to fit into memory (RAM); it assumes that there is an underlying function that is generating the data for it infinitely. By setting the `steps_per_epoch` to be the total number of training data points divided by the batch size, the `fit_generator()` function will know to move from one epoch to the other once it hits the specified step count.
+I used the Keras method `fit_generator()` to train the network. The `fit_generator()` function works with datasets that are too large to fit into memory (RAM); it assumes that there is an underlying function that is generating the data for it infinitely. By setting the `steps_per_epoch` to be the total number of training data points divided by the batch size, the `fit_generator()` function will know to move from one epoch to the other once it hits the specified step count. The final output of the trained network is shown in the gif above - the CNN has learned to travel successfully around the track!
 
 ### Lessons learned
-Importance of collecting data
+This was a very rewarding project - after hours of tweaking and frustrating mistakes while coding, seeing the car drive itself around the track made it worth the while. I realized the importance of having enough training data - adding more driving examples and a variety of scenarios helped the model learn to generalize. I combatted overfitting by applying regularization techniques like data augmentation. And I realized how much faster training a deep network on a GPU is than on a CPU. 
 
 ### Future Work
+While the model is able to drive itself around Track1, it has probably overfitted to that track and wouldn't be able to generalize will to more challenging tracks that have tricky lighty and sharp turns. I could train the network on more examples using different track data in order for the model to generalize to more tracks.
