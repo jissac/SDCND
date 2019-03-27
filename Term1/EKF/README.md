@@ -6,7 +6,7 @@
 ---
 
 The following files are included in the `src` directory:
-* `main.cpp` - communicates with the Term 2 Simulator receiving data measurements, calls a function to run the Kalman filter, calls a function to calculate RMSE
+* `main.cpp` - communicates with the Udacity Simulator web socket - receives data measurements, calls a function to run the Kalman filter, calls a function to calculate RMSE
 * `FusionEKF.cpp` - initializes the filter, calls the predict function, calls the update function
 * `kalman_filter.cpp` - defines the predict function, the update function for lidar, and the update function for radar
 * `tools.cpp` - function to calculate RMSE and the Jacobian matrix
