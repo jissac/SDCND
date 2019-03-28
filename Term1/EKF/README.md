@@ -20,3 +20,10 @@ A visualization is shown below.
 [image0a]: ./imgs/center.jpg "center"
 [image0b]: ./imgs/left.jpg "left"
 [image0c]: ./imgs/right.jpg "right"
+
+
+### Root Mean Squared Error
+In order to check how far the estimated result is from ground truth result, we use the Root Mean Squared Error (RMSE) calculation - an accuracy metric used to measure the deviation of the estimated state from the true state. The lower the RMSE, the higher the estimation accuracy. The formula is given by:
+
+### Jacobian matrix
+The Jacobian is a matrix containing partial derivatives.
