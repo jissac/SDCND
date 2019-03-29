@@ -21,6 +21,11 @@ A visualization is shown below.
 [image0b]: ./imgs/left.jpg "left"
 [image0c]: ./imgs/right.jpg "right"
 
+### Overview
+Lidar provides position with high accuracy. Using the doppler effect, the radar can measure the radial velocity (the component of velocity moving towards or away from the sensor) of a moving object. However, the radar has lower spatial accuracy than lidar. Sensor fusion allows us to combine both lidar and radar measurements and give us 
+
+### Radar Measurments
+The radar provides us with three key measurements: range (rho), bearing (phi), and radial velocity (rho dot). This measurement is in the polar coordinate system.
 
 ### Root Mean Squared Error
 In order to check how far the estimated result is from ground truth result, we use the Root Mean Squared Error (RMSE) calculation - an accuracy metric used to measure the deviation of the estimated state from the true state. The lower the RMSE, the higher the estimation accuracy. The formula is given by:
