@@ -22,7 +22,10 @@ A visualization is shown below.
 [image0c]: ./imgs/right.jpg "right"
 
 ### Overview
-Lidar provides position with high accuracy. Using the doppler effect, the radar can measure the radial velocity (the component of velocity moving towards or away from the sensor) of a moving object. However, the radar has lower spatial accuracy than lidar. Sensor fusion allows us to combine both lidar and radar measurements and give us 
+The lidar sensor measures position with high accuracy. Using the doppler effect, the radar sensor can measure radial velocity (the component of velocity moving towards or away from the sensor) of a moving object. However, radar has lower spatial accuracy than lidar. Sensor fusion allows us to combine both lidar and radar measurements and gives us a more accurate location and velocity update.
+
+### The Kalman Filter
+
 
 ### Radar Measurments
 The radar provides us with three key measurements: range (rho), bearing (phi), and radial velocity (rho dot). This measurement is in the polar coordinate system.
