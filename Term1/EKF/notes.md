@@ -4,3 +4,7 @@
 - **Lecture video series**: https://www.youtube.com/watch?v=tk3OJjKTDnQ&list=PLX2gX-ftPVXU3oUFNATxGXY90AULiqnWT&index=2       
 - **Polar, Cartesian coordinates** https://www.mathsisfun.com/polar-cartesian-coordinates.html         
 
+
+https://github.com/darienmt/CarND-Extended-Kalman-Filter-P1/blob/master/src/FusionEKF.cpp       
+https://github.com/jeremy-shannon/CarND-Extended-Kalman-Filter-Project/blob/master/src/FusionEKF.cpp        
+https://github.com/hectorratia/CarND-Extended-Kalman-Filter-Project/blob/master/src/FusionEKF.cpp
