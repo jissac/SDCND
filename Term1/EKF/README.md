@@ -13,7 +13,7 @@ The following files are included in the `src` directory:
 
 A visualization is shown below.
 
-(insert gif)
+![](Kalman_project.gif)
 
 [//]: # (Image References)
 
