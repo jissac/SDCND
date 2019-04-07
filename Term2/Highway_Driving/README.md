@@ -1,6 +1,6 @@
 ## Highway Driving
 
-### In this project, I wrote a path planning algorithm 
+### In this project, I wrote a path planning algorithm in C++ that implements SAE Level 4 functionality. 
 
 ---
 
