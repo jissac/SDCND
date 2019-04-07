@@ -9,7 +9,7 @@ In this term, I used camera, radar, lidar, and GPS sensor data to localize and c
 - [Programming a Real Self-Driving Car][4]
 
 [1]: https://github.com/jissac/SDCND/tree/master/Term2/Kidnapped_Vehicle
-[2]: https://github.com/jissac/SDCND/tree/master/Term1/
-[3]: https://github.com/jissac/SDCND/tree/master/Term1/
-[4]: https://github.com/jissac/SDCND/tree/master/Term1/
-[5]: https://github.com/jissac/SDCND/tree/master/Term1/
+[2]: https://github.com/jissac/SDCND/tree/master/Term2/Highway_Driving
+[3]: https://github.com/jissac/SDCND/tree/master/Term2/PID_Controller
+[4]: https://github.com/jissac/SDCND/tree/master/Term2/
+[5]: https://github.com/jissac/SDCND/tree/master/Term2/
