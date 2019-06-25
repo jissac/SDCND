@@ -17,4 +17,5 @@ Using just a proportional controller results in steady-state error, whereas usin
 ### Differential (D)
 The differential portion of the PID controller measures the rate of change of the error and protects for the future error by counteracting the P component's tendency to overshoot the center line.
 
+### Hyperparameter tuning
 
