@@ -11,4 +11,8 @@ Control is how we use the steering, throttle, and brakes to make the car go wher
 ### Proportional (P)
 The proportional portion of the PID controller 
 
+### Integral (I)
+The integral portion of the PID controller 
 
+### Differential (D)
+The differential portion of the PID controller 
