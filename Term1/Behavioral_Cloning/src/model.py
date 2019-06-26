@@ -79,10 +79,10 @@ def process_imgs(batch_sample):
     steering_angle = np.float32(batch_sample[3])
     # print(steering_angle)
     images, steering_angles = [],[]
-    correction_factor = 0.25
+    correction_factor = 0.15
     
     for camera_location in range(3):
-        name = './data/track1_bkwd/IMG/'+batch_sample[camera_location].split('/')[-1]
+        name = './data/track_full/IMG/' + batch_sample[camera_location].split('/')[-1]
         # print(name)
         image = cv2.imread(name)
         image_rgb = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
@@ -95,6 +95,10 @@ def process_imgs(batch_sample):
             steering_angles.append(steering_angle - correction_factor)
         else:
             steering_angles.append(steering_angle)
+            if steering_angle != 0:
+                flipped_center_image = cv2.flip(image_rgb, 1)
+                images.append(flipped_center_image)
+                steering_angles.append(-steering_angle)
 
     return images, steering_angles
 
@@ -131,35 +135,38 @@ if __name__ == "__main__":
     '''
     Train and save the model
     '''
-    #model = cnn_model()
-    model = load_model('model_track1.h5')
+    EPOCHS = 7
+    BS = 128
+    model = cnn_model()
+#     model = load_model('model_track1_full.h5')
+    model.load_weights('model_weights_track_full2-06-01.h5')
     #model.summary()
-    log_file = load_csv_log('./data/track1_bkwd/driving_log.csv')
+    log_file = load_csv_log('./data/track_full/driving_log.csv')
     # print(log_file[1])
     # print(log_file[1][1])
     train_samples, validation_samples = split_data(log_file[1:])
     # compile and train the model using the generator function
-    train_generator = generator(train_samples, batch_size=128)
+    train_generator = generator(train_samples, batch_size=BS)
     # print('traingen')
-    validation_generator = generator(validation_samples, batch_size=128)
+    validation_generator = generator(validation_samples, batch_size=BS)
     # print('valgen')
     model_history = model.fit_generator(generator=train_generator,
-                        steps_per_epoch=len(train_samples),
+                        steps_per_epoch=len(train_samples)//BS,
                         validation_data=validation_generator,
                         validation_steps=len(validation_samples),
-                        epochs=3, verbose=1)
-    model.save('model_track1_bkwd.h5')
-    model.save_weights('track1_bkwd_weights.h5')
+                        epochs=EPOCHS, verbose=1)
+    model.save('model-06-13.h5')
+    model.save_weights('model_weights-06-13.h5')
     #plot_model(model, to_file='model_plot.png',show_shapes=True, show_layer_names=True)
 
-    ### print the keys contained in the history object
-    print(model_history.history.keys())
+#     ### print the keys contained in the history object
+#     print(model_history.history.keys())
 
-    ### plot the training and validation loss for each epoch
-    plt.plot(model_history.history['loss'])
-    plt.plot(model_history.history['val_loss'])
-    plt.title('model mean squared error loss')
-    plt.ylabel('mean squared error loss')
-    plt.xlabel('epoch')
-    plt.legend(['training set', 'validation set'], loc='upper right')
-    plt.savefig('loss_track1_bkwd.jpg')
+#     ### plot the training and validation loss for each epoch
+#     plt.plot(model_history.history['loss'])
+#     plt.plot(model_history.history['val_loss'])
+#     plt.title('model mean squared error loss')
+#     plt.ylabel('mean squared error loss')
+#     plt.xlabel('epoch')
+#     plt.legend(['training set', 'validation set'], loc='upper right')
+#     plt.savefig('loss_track1_recovers.jpg')
