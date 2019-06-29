@@ -8,11 +8,7 @@ The robot has been 'kidnapped' and transported to a new location. Luckily it has
 
 The gif below demonstrates my implementation. The are landmarks on the map while the lines are the range sensor observations.
 
-<include gif>
-
-The following files are included in the 'src' directory:
-` `
-
+The source code files are included in the 'src' directory.
 
 ### Particle Filters
 Unlike the Kalman filter which is a single Gaussian, the particle filter can be used to represent multi-modal distributions. The particle filter uses particles to represent a discrete guess (X and Y coordinates, heading) as to where the robot might be. The set of several thousand of these guesses forms the filter - depending on how consistent the particles are with the sensor measurements, the correct set of particles will survive. Those thousands of particles that are then clustered together at a single location form the approximate belief of the robot as it localizes itself.
