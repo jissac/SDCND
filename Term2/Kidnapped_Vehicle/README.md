@@ -6,8 +6,6 @@
 ### Overview
 The robot has been 'kidnapped' and transported to a new location. Luckily it has a map of this location, a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data. Given this information, our ultimate goal is to use a particle filter and find a weight parameter for each particle that represents how well that particle fits to being in the same location as the actual car.
 
-The gif below demonstrates my implementation. The are landmarks on the map while the lines are the range sensor observations.
-
 The source code files are included in the 'src' directory.
 
 ### Particle Filters
