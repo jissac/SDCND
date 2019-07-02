@@ -1,4 +1,4 @@
-## Highway Driving
+# Highway Driving
 
 ### In this project, I wrote a path planning algorithm in C++ that implements SAE Level 4 functionality. 
 
@@ -24,3 +24,6 @@ An example of the final output is shown below. The code for this project is cont
 [image3]: ./img/output_images/test_binary.jpg "test_binary"
 [image4]: ./img/output_images/test_roi.jpg "test_roi"
 [image5]: ./img/output_i
+
+## Path Planning
+The process of finding a path from start location to goal location is called 'planning'. In other words, given a map of the world, a starting and ending location, and a cost function, or the time required to drive a certain route, the goal is to find the minimum cost path.
