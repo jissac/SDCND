@@ -29,3 +29,9 @@ An example of the final output is shown below. The code for this project is cont
 The process of finding a path from start location to goal location is called 'planning'. In other words, given a map of the world, a starting and ending location, and a cost function, or the time required to drive a certain route, the goal is to find the minimum cost path. 
 ### A*
 We can formulate the path planning problem as a search problem. The A* algorithm
+
+## Prediction
+
+## Behavior Planning
+
+## Trajectory Generation
