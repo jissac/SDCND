@@ -23,9 +23,10 @@ Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoi
 The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
 
 ## Prediction
-
+The prediction step is responsible for predicting what the vehicle will do depending on sensor information and making decisions on how to get to the destination succesfully. Prediction can be categorized into two approaches: the model-based approach, which uses physical models to predict future behavior or the data-driven approach, which uses lots of observed behavior data to predict what will happen next.
 ## Behavior Planning
-The process of finding a path from start location to goal location is called 'planning'. In other words, given a map of the world, a starting and ending location, and a cost function, or the time required to drive a certain route, the goal is to find the minimum cost path. 
+The process of finding a path from start location to goal location is called 'planning'. In other words, given a map of the world, a starting and ending location, and a cost function, or the time required to drive a certain route, the goal is to find the minimum cost path. The behavior planning step is responsible for providing guidance to the trajectory planner about what sorts of maneuvers they should plan trajectories for.
 ## Trajectory Generation
+Generating a continuous path for the car to follow is the goal of this step. We need continuity in position and speed (and also acceleration and jerk). As jerk is the most noticeable factor when in the car, generating a jerk minimizing trajectory is important for a comfortable ride. 
 
 I used the spline function provided by http://kluge.in-chemnitz.de/opensource/spline/ to generate trajectories that the vehicle would be able to follow.
