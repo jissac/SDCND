@@ -29,8 +29,7 @@ The process of finding a path from start location to goal location is called 'pl
 ### Trajectory Generation
 Generating a continuous path for the car to follow is the goal of this step. We need continuity in position and speed (and also acceleration and jerk). As jerk is the most noticeable factor when in the car, generating a jerk minimizing trajectory is important for a comfortable ride. 
 
-I used the spline function provided by http://kluge.in-chemnitz.de/opensource/spline/ to generate trajectories that the vehicle would be able to follow.
-
-
 ### Implmentation
-Using the position of other cars in the road provided by the `sensor_fusion` data (a list of all other car's attributes on the same side of the road), I determined where the other cars are, how fast they are going, and how the host vehicle should behave as a result. To avoid hitting a car in front of us, I check whether there is a car in front of the host vehicle, and whether to change lanes or reduce speed and stay in the current lane (depending on the vehicles around us).
+I used the spline function provided by http://kluge.in-chemnitz.de/opensource/spline/ to generate trajectories that the vehicle would be able to follow. Using a list of waypoints, I generated a path that's tangent to the angle of the car. Furthermore, transforming the world coordinates to the car's local coordinates was useful in calculating the vehicle trajectory.
+
+Using the position of other cars in the road provided by the `sensor_fusion` data (a list of all other car's attributes on the same side of the road), I determined where the other cars are, how fast they are going, and how the host vehicle should behave as a result. To avoid hitting a car in front of us, I check whether there is a car in front of the host vehicle, and whether to change lanes or reduce speed and stay in the current lane (depending on the vehicles around us). Using Frenet coordinates was useful in determining lane position (using `d`) and lane distance (using `s`). 
