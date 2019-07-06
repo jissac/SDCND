@@ -11,5 +11,5 @@ In this term, I used camera, radar, lidar, and GPS sensor data to localize and c
 [1]: https://github.com/jissac/SDCND/tree/master/Term2/Kidnapped_Vehicle
 [2]: https://github.com/jissac/SDCND/tree/master/Term2/Highway_Driving
 [3]: https://github.com/jissac/SDCND/tree/master/Term2/PID_Controller
-[4]: https://github.com/jissac/SDCND/tree/master/Term2/
-[5]: https://github.com/jissac/SDCND/tree/master/Term2/
+[4]: https://github.com/jissac/SDCND/tree/master/Term2/Capstone
+
