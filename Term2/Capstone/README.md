@@ -1,5 +1,7 @@
 # Capstone Project: Building a self-driving car
-The goal of this project is to enable Karla (the Udacity car) to drive around a test track using waypoint navigation, while avoiding obstacles and stopping at traffic lights. I implemented the components of the perception, control, and planning subsystems in order to accomplish this task.
+In this final project, I built a ROS-enabled system that allows Carla (Udacity's autonomous vehicle) to drive around a test track while avoiding obstacles and stopping at traffic lights. 
+
+The perception, control, and planning subsystems are essential to building a successful self-driving car. 
 
 ## Perception
 I implemented traffic light detection and obstacle detection 
