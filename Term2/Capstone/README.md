@@ -9,7 +9,7 @@ The project was divided into three distinct parts or subsystems: perception, con
 ## Implementation
 I implemented the project in the following steps:
 ### Waypoint Updater Node
-The purpose of this node is to publish a fixed number of waypoints ahead of the vehicle with the correct target velocities, depending on traffic lights and obstacles. 
+The purpose of this node is to publish a fixed number of waypoints ahead of the vehicle with the correct target velocities, depending on traffic lights and obstacles. Refer to `./ros/src/waypoint_updater/` for more details.
 
 ### Drive-by-Wire (DBW) Node
-The DBW node contains the ROS message definitions and acts as the bridge between hardware and software by running in the car and allowing ROS to actuate the car's steering and throttle.
+The DBW node contains the ROS message definitions and acts as the bridge between hardware and software by allowing ROS to actuate the car's steering and throttle. Refer to `./ros/src/twist_controller/` for more details.
