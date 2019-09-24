@@ -1,2 +1,5 @@
 - https://github.com/bekk-studio/CarND-Capstone/blob/master/ros/src/tl_detector/tl_detector.py
 - https://github.com/grapestone5321/sdcnd-programming_a_real_self_driving_car/blob/master/ros/src/tl_detector/light_classification/tl_classifier.py
+- https://gitlab.com/darshaniyer/programming-a-real-car/blob/master/workspace/CarND-Capstone/ros/src/tl_detector/light_classification/tl_classifier.py
+- https://github.com/JJMats/programming_a_real_self_driving_car/blob/33f73323e2fca651380f9b5e5218775f55111758/ros/src/twist_controller/dbw_node.py
+- https://github.com/bekk-studio/CarND-Capstone/tree/master/ros/src/tl_detector/light_classification
