@@ -10,7 +10,7 @@ The project was divided into three distinct parts or subsystems: perception, con
 I implemented the project in the following steps:
 
 ### Traffic light detection
-Using the vehicle's location and the (x, y) coordinates for traffic lights allows us to find the nearest visible traffic light ahead of the vehicle. This takes place in the `process_traffic_lights` method of `tl_detector.py`. Using these waypoint indices (`get_closest_waypoint()`), I determined which light is ahead of the vehicle along the list of waypoints. Furthermore, I used the camera image data to classify the color of the traffic light. The core functionality of this step takes place in the get_light_state method of tl_detector.py.
+Using the vehicle's location and the (x, y) coordinates for traffic lights allows us to find the nearest visible traffic light ahead of the vehicle. This takes place in the `process_traffic_lights` method of `tl_detector.py`. Using these waypoint indices (`get_closest_waypoint()`), I determined which light is ahead of the vehicle along the list of waypoints. Furthermore, I used the camera image data to classify the color of the traffic light. The core functionality of this step takes place in the `get_light_state` method of `tl_detector.py`.
 
 ### Waypoint Updater Node
 The purpose of this node is to publish a fixed number of waypoints ahead of the vehicle with the correct target velocities, depending on traffic lights and obstacles. Refer to `./ros/src/waypoint_updater/` for more details.
