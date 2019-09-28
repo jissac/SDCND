@@ -5,7 +5,7 @@ Udacity Self Driving Car Nanodegree
 In this term, I applied computer vision and deep learning techniques on automotive problems 
 by teaching the car to detect lane lines, predict steering angles, etc. based on camera data.
 
-## Projects
+### Projects
 - [Lane finding][1] 
 - [Advanced Lane Finding][2]
 - [Traffic Sign Classifier][3]
@@ -21,11 +21,11 @@ by teaching the car to detect lane lines, predict steering angles, etc. based on
 ## Term 2: [Localization, Path Planning, Control, and System Integration][8]
 In this term, I used camera, radar, lidar, and GPS sensor data to localize and control the vehicle. Next, I applied path planning to get the vehicle to a specified location.
 
-## Projects
+### Projects
 - [Kidnapped Vehicle][a]
 - [Highway Driving][b]
 - [PID Controller][c]
-- [Programming a Real Self-Driving Car][d]
+- [System Integration][d]
 
 [a]: https://github.com/jissac/SDCND/tree/master/Term2/Kidnapped_Vehicle
 [b]: https://github.com/jissac/SDCND/tree/master/Term2/Highway_Driving
