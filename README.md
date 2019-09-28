@@ -3,7 +3,7 @@ Udacity Self Driving Car Nanodegree
 
 ## Term 1: [Computer Vision, Deep Learning, and Sensor Fusion][7]
 In this term, I applied computer vision and deep learning techniques on automotive problems 
-by teaching the car to detect lane lines, predict steering angles, etc. based on camera data.
+by teaching the car to detect lane lines, predict steering angles, etc. based on camera data. Projects in Python, TensorFlow, and C++
 
 ### Projects
 - [Lane finding][1] 
@@ -19,7 +19,7 @@ by teaching the car to detect lane lines, predict steering angles, etc. based on
 [5]: https://github.com/jissac/SDCND/tree/master/Term1/EKF
 
 ## Term 2: [Localization, Path Planning, Control, and System Integration][8]
-In this term, I used camera, radar, lidar, and GPS sensor data to localize and control the vehicle. Next, I applied path planning to get the vehicle to a specified location.
+In this term, I used camera, radar, lidar, and GPS sensor data to localize and control the vehicle. Next, I applied path planning to get the vehicle to a specified location. Projects in Python, C++.
 
 ### Projects
 - [Kidnapped Vehicle][a]
