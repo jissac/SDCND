@@ -28,7 +28,10 @@ The DBW node contains the ROS message definitions and acts as the bridge between
 
 Refer to `./ros/src/twist_controller/` for more details.
 
-### Future Work
-I tested the output using Udacity's GPU enabled simulator. However, there were still problems with latency in the simulation with the camera turned on. Running on a separate machine outside of the VM has been said to help with this known problem.
+### Thoughts
+I tested the output using Udacity's GPU enabled simulator. However, there were still problems with latency in the simulation with the camera turned on. Running on a separate machine outside of the VM has been said to help with this known problem. 
+
+I learned a lot through this challenging project and how all the pieces fit together in order to make the ROS nodes communicate with each other.
+
 
 
