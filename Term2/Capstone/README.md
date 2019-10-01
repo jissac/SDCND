@@ -1,5 +1,7 @@
 # Capstone Project: Building a self-driving car
-In this final project, I built a ROS-enabled system that allows Carla (Udacity's autonomous vehicle) to drive around a test track while avoiding obstacles and stopping at traffic lights. 
+In this final project, I built a ROS-enabled system that allows the vehicle to drive around a test track while avoiding obstacles and stopping at traffic lights. The figure below shows the car stopped at a red light before proceeding based on its waypoints around the simulated track.
+
+![image0](./car_on_track.png)
 
 The project was divided into three distinct parts or subsystems: perception, control, and planning. **Perception** involved building a traffic light detection node and a traffic light classification node. **Planning** involved coding the the waypoint updater, which sets the target velocity for each waypoint based on the upcoming traffic lights and obstacles. **Control** involved the drive-by-wire ROS node that takes target trajectory as input and sends control commands to navigate the vehicle. Combining these three parts into one system ensured that the vehicle was able to effectively navigate around the test track and stop at traffic lights.
 
