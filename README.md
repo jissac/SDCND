@@ -1,5 +1,5 @@
 # SDCND
-Udacity Self Driving Car Nanodegree
+Udacity Self Driving Car Nanodegree (2018 Ford-sponsored cohort)
 
 ## Term 1: [Computer Vision, Deep Learning, and Sensor Fusion][7]
 In this term, I applied computer vision and deep learning techniques on automotive problems 
